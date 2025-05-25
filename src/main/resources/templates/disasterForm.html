@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Natural Disaster Search</title>
+</head>
+<body>
+    <h1>Search Natural Disasters</h1>
+
+    <div th:if="${errorMessage}">
+        <p style="color:red" th:text="${errorMessage}"></p>
+    </div>
+
+    <form action="#" th:action="@{/disasters/search}" method="post">
+        <label>Country:</label>
+        <input type="text" name="country" required/><br/>
+
+        <label>Disaster Type:</label>
+        <input type="text" name="disasterType" required/><br/>
+
+        <button type="submit">Search</button>
+    </form>
+
+    <hr/>
+
+    <h3>Or search by year range</h3>
+
+    <form action="#" th:action="@{/disasters/searchRange}" method="post">
+        <label>Country:</label>
+        <input type="text" name="country" required/><br/>
+
+        <label>Disaster Type:</label>
+        <input type="text" name="disasterType" required/><br/>
+
+        <label>From Year:</label>
+        <input type="number" name="fromYear" required/><br/>
+
+        <label>To Year:</label>
+        <input type="number" name="toYear" required/><br/>
+
+        <button type="submit">Search Range</button>
+    </form>
+</body>
+</html>

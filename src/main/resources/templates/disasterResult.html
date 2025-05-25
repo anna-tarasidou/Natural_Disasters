@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Search Results</title>
+</head>
+<body>
+    <h1>Results for [[${result.answer.countryName}]] - [[${result.answer.disasterTypeString}]]</h1>
+
+    <h3>Measurements (Year - Incidents)</h3>
+    <table border="1">
+        <tr><th>Year</th><th>Incidents</th></tr>
+        <tr th:each="m : ${result.answer.measurements}">
+            <td th:text="${m.first}"></td>
+            <td th:text="${m.second}"></td>
+        </tr>
+    </table>
+
+    <h3>Descriptive Statistics</h3>
+    <pre th:text="${descriptiveStats}"></pre>
+
+    <h3>Regression Results</h3>
+    <pre th:text="${regression}"></pre>
+
+    <a href="/disasters">New Search</a>
+</body>
+</html>
