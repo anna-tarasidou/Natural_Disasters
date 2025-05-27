@@ -2,12 +2,81 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Search by Year Range</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #dff6f0; /* πολύ απαλό pastel mint */
+            margin: 0;
+            padding: 30px;
+            color: #6b5b95; /* pastel purple */
+        }
+
+        h1 {
+            text-align: center;
+            color: #6b5b95; /* pastel purple */
+            margin-bottom: 30px;
+        }
+
+        label {
+            color: #6b5b95; /* pastel purple */
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            padding: 8px;
+            border: 1px solid #d7c9e3; /* soft pastel border */
+            border-radius: 5px;
+            width: 250px;
+            box-sizing: border-box;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px 30px;
+            background-color: #f7cac9; /* pastel pink */
+            color: #6b5b95; /* pastel purple */
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 1px 1px 4px rgba(247, 202, 201, 0.6);
+            transition: background-color 0.3s ease;
+            display: block;
+            width: 250px;
+        }
+
+        button:hover {
+            background-color: #f2a1a0; /* deeper pastel pink */
+        }
+
+        .error-container p {
+            color: #e57373; /* pastel red for error */
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        a {
+            color: #6b5b95; /* pastel purple */
+            text-decoration: none;
+            display: block;
+            margin-top: 30px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
     <h1>Search by Country, Type, and Year Range</h1>
 
-    <div th:if="${errorMessage}">
-        <p style="color:red" th:text="${errorMessage}"></p>
+    <div class="error-container" th:if="${errorMessage}">
+        <p th:text="${errorMessage}"></p>
     </div>
 
     <form action="#" th:action="@{/disasters/searchRange}" method="post">
