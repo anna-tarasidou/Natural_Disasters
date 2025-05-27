@@ -21,6 +21,11 @@ public class NaturalDisasterDataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        if (repository.count() > 0) {
+            System.out.println("Disaster data already exists. Skipping file load.");
+            return;
+        }
+
         String filePath = "src/main/resources/disasters.tsv";
         List<NaturalDisaster> disastersToSave = new ArrayList<>();
 

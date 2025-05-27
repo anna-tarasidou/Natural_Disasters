@@ -2,25 +2,90 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Search Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f9fafb;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h1, h3 {
+            text-align: center;
+            color: #2c3e50;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        th {
+            background-color: #2980b9;
+            color: white;
+            padding: 8px;
+        }
+
+        td {
+            padding: 8px;
+            text-align: center;
+        }
+
+        pre {
+            background: #f4f6f8;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+        }
+
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #1e88e5;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <h1>Results for [[${result.answer.countryName}]] - [[${result.answer.disasterTypeString}]]</h1>
+    <div class="container">
+        <h1 th:text="'Results for ' + ${result.answer.countryName} + ' - ' + ${result.answer.disasterTypeString}"></h1>
 
-    <h3>Measurements (Year - Incidents)</h3>
-    <table border="1">
-        <tr><th>Year</th><th>Incidents</th></tr>
-        <tr th:each="m : ${result.answer.measurements}">
-            <td th:text="${m.first}"></td>
-            <td th:text="${m.second}"></td>
-        </tr>
-    </table>
+        <h3>Measurements (Year - Incidents)</h3>
+        <table>
+            <tr><th>Year</th><th>Incidents</th></tr>
+            <tr th:each="m : ${result.answer.measurements}">
+                <td th:text="${m.first}"></td>
+                <td th:text="${m.second}"></td>
+            </tr>
+        </table>
 
-    <h3>Descriptive Statistics</h3>
-    <pre th:text="${descriptiveStats}"></pre>
+        <h3>Descriptive Statistics</h3>
+        <pre th:text="${descriptiveStats}"></pre>
 
-    <h3>Regression Results</h3>
-    <pre th:text="${regression}"></pre>
+        <h3>Regression Results</h3>
+        <pre th:text="${regression}"></pre>
 
-    <a href="/disasters">New Search</a>
+        <a href="/disasters">New Search</a>
+    </div>
 </body>
 </html>

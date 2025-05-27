@@ -15,8 +15,23 @@ public class NaturalDisasterController {
     private NaturalDisasterService service;
 
     @GetMapping
-    public String showForm() {
-        return "disasterForm"; 
+    public String redirectToOptions() {
+        return "redirect:/disasters/options";
+    }
+
+    @GetMapping("/options")
+    public String showSearchOptions() {
+        return "searchOptions";
+    }
+
+    @GetMapping("/search/form")
+    public String showSimpleSearchForm() {
+        return "disasterForm";
+    }
+
+    @GetMapping("/searchRange/form")
+    public String showRangeSearchForm() {
+        return "disasterRangeForm";
     }
 
     @PostMapping("/search")
@@ -36,7 +51,7 @@ public class NaturalDisasterController {
         model.addAttribute("descriptiveStats", result.getDescriptiveStatsString());
         model.addAttribute("regression", result.getRegressionResultString());
 
-        return "disasterResult"; 
+        return "disasterResult";
     }
 
     @PostMapping("/searchRange")
@@ -49,14 +64,14 @@ public class NaturalDisasterController {
 
         if (toYear < fromYear) {
             model.addAttribute("errorMessage", "Invalid year range");
-            return "disasterForm";
+            return "disasterRangeForm";
         }
 
         ISingleMeasureRequest result = service.getSingleMeasureRange("SearchRequestRange", country, disasterType, fromYear, toYear);
 
         if (result == null) {
             model.addAttribute("errorMessage", "No data found for given parameters");
-            return "disasterForm";
+            return "disasterRangeForm";
         }
 
         model.addAttribute("result", result);

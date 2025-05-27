@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Natural Disaster Search Options</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        h1 {
+            color: #2c3e50;
+        }
+
+        .option-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .option {
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            width: 250px;
+            background-color: #f4f4f4;
+            transition: 0.3s ease;
+        }
+
+        .option:hover {
+            background-color: #e0f7fa;
+            transform: scale(1.05);
+        }
+
+        a.button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+        a.button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Search Natural Disasters</h1>
+
+    <div class="option-container">
+        <div class="option">
+            <h3>Search by Country & Type</h3>
+            <p>Find disasters in a specific country and type.</p>
+            <a th:href="@{/disasters/search/form}" class="button">Go to Search</a>
+        </div>
+
+        <div class="option">
+            <h3>Search by Year Range</h3>
+            <p>Search disasters in a range of years.</p>
+            <a th:href="@{/disasters/searchRange/form}" class="button">Search with Range</a>
+        </div>
+    </div>
+</body>
+</html>
