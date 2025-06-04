@@ -5,27 +5,28 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #dff6f0; /* πολύ απαλό pastel mint */
+            background-color: #BEEF9E; 
             margin: 0;
             padding: 30px;
-            color: #6b5b95; /* pastel purple */
+            color: #828C51; 
         }
 
         h1 {
             text-align: center;
-            color: #6b5b95; /* pastel purple */
-            margin-bottom: 30px;
+            color: #1E352F;
+            margin-top: 30px;
+            margin-bottom: 10px;
         }
 
         label {
-            color: #6b5b95; /* pastel purple */
+            color: #1E352F;
             font-weight: bold;
         }
 
         input[type="text"],
         input[type="number"] {
             padding: 8px;
-            border: 1px solid #d7c9e3; /* soft pastel border */
+            border: 1px solid #828C51; /* soft pastel border */
             border-radius: 5px;
             width: 250px;
             box-sizing: border-box;
@@ -34,32 +35,32 @@
         button {
             margin-top: 15px;
             padding: 10px 30px;
-            background-color: #f7cac9; /* pastel pink */
-            color: #6b5b95; /* pastel purple */
-            border: none;
-            border-radius: 5px;
+            background-color: #A6C36F; 
+            color: #1E352F;
+            border: 1px solid #335145; 
+            border-radius: 15px;
             font-size: 16px;
             font-weight: bold;
             cursor: pointer;
-            box-shadow: 1px 1px 4px rgba(247, 202, 201, 0.6);
+            box-shadow: 1px 1px 4px rgba(51, 81, 69, 1);
             transition: background-color 0.3s ease;
             display: block;
             width: 250px;
         }
 
         button:hover {
-            background-color: #f2a1a0; /* deeper pastel pink */
+            background-color: #828C51; 
         }
 
         .error-container p {
-            color: #e57373; /* pastel red for error */
+            color: #e57373; 
             text-align: center;
             margin-bottom: 20px;
             font-weight: bold;
         }
 
         a {
-            color: #6b5b95; /* pastel purple */
+            color: #335145;
             text-decoration: none;
             display: block;
             margin-top: 30px;
@@ -70,32 +71,42 @@
         a:hover {
             text-decoration: underline;
         }
+        
+        .center-wrapper {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 50vh;
+        }
     </style>
 </head>
 <body>
-    <h1>Search by Country, Type, and Year Range</h1>
+            <h1>Search by Country, Type, and Year Range</h1>
 
-    <div class="error-container" th:if="${errorMessage}">
-        <p th:text="${errorMessage}"></p>
+    <div class="center-wrapper">
+        <div class="error-container" th:if="${errorMessage}">
+            <p th:text="${errorMessage}"></p>
+        </div>
+
+        <form action="#" th:action="@{/disasters/searchRange}" method="post">
+            <label>Country:</label><br/>
+            <input type="text" name="country" required/><br/><br/>
+
+            <label>Disaster Type:</label><br/>
+            <input type="text" name="disasterType" required/><br/><br/>
+
+            <label>From Year:</label><br/>
+            <input type="number" name="fromYear" required/><br/><br/>
+
+            <label>To Year:</label><br/>
+            <input type="number" name="toYear" required/><br/><br/>
+
+            <button type="submit">Search</button>
+        </form>
+
+        <a href="/disasters/options">Back to Options</a>
     </div>
-
-    <form action="#" th:action="@{/disasters/searchRange}" method="post">
-        <label>Country:</label>
-        <input type="text" name="country" required/><br/>
-
-        <label>Disaster Type:</label>
-        <input type="text" name="disasterType" required/><br/>
-
-        <label>From Year:</label>
-        <input type="number" name="fromYear" required/><br/>
-
-        <label>To Year:</label>
-        <input type="number" name="toYear" required/><br/>
-
-        <button type="submit">Search</button>
-    </form>
-
-    <br/>
-    <a href="/disasters/options">Back to Options</a>
 </body>
+
 </html>
